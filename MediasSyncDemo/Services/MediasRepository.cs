@@ -43,6 +43,28 @@ namespace MediasAsyncDemo.Services
             return media;
         }
 
+        public void AddMedia(Media mediaToAdd)
+        {
+            if(mediaToAdd == null)
+            {
+                throw new ArgumentNullException(nameof(mediaToAdd));
+            }
+
+            _context.Add(mediaToAdd);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            try
+            {
+                return (await _context.SaveChangesAsync() > 0);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Dispose()
         {
             Dispose(true);

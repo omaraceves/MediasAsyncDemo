@@ -10,6 +10,8 @@ namespace MediasAsyncDemo.Entities
     [Table("Channels")]
     public class Channel
     {
+        public Channel(){}
+
         [Key]
         public Guid Id { get; set; }
 

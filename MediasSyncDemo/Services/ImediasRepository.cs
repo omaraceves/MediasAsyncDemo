@@ -14,5 +14,9 @@ namespace MediasAsyncDemo.Services
         Task<IEnumerable<Entities.Media>> GetMediasAsync();
 
         Task<Entities.Media> GetMediaAsync(Guid id);
+
+        void AddMedia(Entities.Media mediaToAdd);
+
+        Task<bool> SaveChangesAsync();
     }
 }
