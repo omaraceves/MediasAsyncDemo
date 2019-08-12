@@ -37,6 +37,8 @@ namespace MediasSyncDemo
             var connectionString = Configuration["ConnectionStrings:BooksDBConnectionString"];
             services.AddDbContext<MediasContext>(o => o.UseSqlServer(connectionString));
             services.AddScoped<IMediasRepository, MediasRepository>();
+
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -26,7 +26,7 @@ namespace MediasAsyncDemo.Controllers
         }
 
         [HttpGet]
-        [MediaResultFilter]
+        [MediaWithImagesResultFilter]
         [Route("{id}", Name = "GetMedia")]
         public async Task<IActionResult> GetMedia(Guid id)
         {
@@ -35,7 +35,10 @@ namespace MediasAsyncDemo.Controllers
             {
                 return NotFound();
             }
-            return Ok(mediaEntity);
+
+            var mediaImagesCollection = await _mediasRepository.GetMediaImagesAsync(id);
+
+            return Ok((mediaEntity, mediaImagesCollection));
         }
 
         [HttpGet]

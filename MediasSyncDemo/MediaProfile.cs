@@ -11,10 +11,18 @@ namespace MediasAsyncDemo
         public MediaProfile()
         {
             CreateMap<Entities.Media, Models.Media>()
-                .ForMember(m => m.Channel, opt => opt.MapFrom(src => $"{src.Channel.Type}: {src.Channel.Name}"));
+                .ForMember(m => m.Channel, 
+                opt => opt.MapFrom(src => $"{src.Channel.Type}: {src.Channel.Name}"));
 
             CreateMap<Models.MediaForCreation, Entities.Media>();
-                
+
+            CreateMap<Entities.Media, Models.MediaWithImages>()
+               .ForMember(m => m.Channel,
+               options => options.MapFrom(src => $"{src.Channel.Type}: {src.Channel.Name}"));
+
+            CreateMap<IEnumerable<ExternalModels.MediaImage>, Models.MediaWithImages>()
+                .ForMember(dest => dest.MediaImages, options => options.MapFrom(src => src));
+
         }
 
     }
